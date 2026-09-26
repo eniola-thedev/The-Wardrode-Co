@@ -243,10 +243,73 @@ function Storefront() {
             <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-balance">
               The collection
             </h2>
-            <span className="text-sm font-medium text-ink/60">5 pieces</span>
+            <span className="text-sm font-medium text-ink/60">
+              {visibleProducts.length}{" "}
+              {visibleProducts.length === 1 ? "piece" : "pieces"}
+            </span>
           </div>
+
+          {/* Filters */}
+          <div className="mb-6 space-y-3 rounded-2xl bg-white/55 p-4 ring-1 ring-white/60 backdrop-blur-md">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/50">
+                Category
+              </span>
+              {["All", ...categories].map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setCategoryFilter(cat)}
+                  className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
+                    categoryFilter === cat
+                      ? "bg-brand font-semibold text-ink"
+                      : "bg-ink/5 text-ink/70 hover:bg-ink/10"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/50">
+                Size
+              </span>
+              {["All", ...allSizes].map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => setSizeFilter(s)}
+                  className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
+                    sizeFilter === s
+                      ? "bg-ink font-semibold text-white"
+                      : "bg-ink/5 text-ink/70 hover:bg-ink/10"
+                  }`}
+                >
+                  {s}
+                </button>
+              ))}
+              {filtersActive && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCategoryFilter("All");
+                    setSizeFilter("All");
+                  }}
+                  className="ml-auto rounded-full bg-ink/5 px-3.5 py-1.5 text-xs font-medium text-ink/70 transition-colors hover:bg-ink/10"
+                >
+                  Clear filters
+                </button>
+              )}
+            </div>
+          </div>
+
+          {visibleProducts.length === 0 ? (
+            <p className="rounded-2xl bg-white/55 px-6 py-12 text-center text-sm text-ink/60 ring-1 ring-white/60 backdrop-blur-md">
+              Nothing matches those filters — try a different size or category.
+            </p>
+          ) : (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {products.slice(1).map((product) => (
+            {visibleProducts.map((product) => (
               <article
                 key={product.id}
                 className="group rounded-2xl bg-white/55 p-3 ring-1 ring-white/60 backdrop-blur-md"
