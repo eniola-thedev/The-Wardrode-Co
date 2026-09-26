@@ -93,7 +93,7 @@ function Storefront() {
 
   const selectQuickView = (product: Product) => {
     setQuickViewId(product.id);
-    setSize(product.sizes.includes("M") ? "M" : product.sizes[0]);
+    setSize(product.sizes.includes("M") ? "M" : product.sizes[0]!);
     setQty(1);
   };
 
