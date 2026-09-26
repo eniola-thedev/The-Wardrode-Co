@@ -31,6 +31,9 @@ type CartLine = { productId: string; size: string; qty: number };
 const FREE_SHIPPING_THRESHOLD = 120;
 const SHIPPING_FLAT = 8;
 
+const categories = [...new Set(products.map((p) => p.category))];
+const allSizes = ["XS", "S", "M", "L", "XL"];
+
 function Storefront() {
   const hero = products[0]!;
   const [quickViewId, setQuickViewId] = useState(hero.id);
@@ -42,6 +45,17 @@ function Storefront() {
   ]);
   const [bagPulse, setBagPulse] = useState(false);
   const [checkedOut, setCheckedOut] = useState(false);
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [sizeFilter, setSizeFilter] = useState("All");
+
+  const visibleProducts = products
+    .slice(1)
+    .filter(
+      (p) =>
+        (categoryFilter === "All" || p.category === categoryFilter) &&
+        (sizeFilter === "All" || p.sizes.includes(sizeFilter)),
+    );
+  const filtersActive = categoryFilter !== "All" || sizeFilter !== "All";
 
   const quickView = products.find((p) => p.id === quickViewId) ?? hero;
 
