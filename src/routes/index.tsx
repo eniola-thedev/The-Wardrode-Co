@@ -32,7 +32,7 @@ const FREE_SHIPPING_THRESHOLD = 120;
 const SHIPPING_FLAT = 8;
 
 function Storefront() {
-  const hero = products[0];
+  const hero = products[0]!;
   const [quickViewId, setQuickViewId] = useState(hero.id);
   const [size, setSize] = useState("M");
   const [qty, setQty] = useState(1);
