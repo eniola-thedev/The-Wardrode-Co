@@ -21,14 +21,6 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:image",
-        content: "https://id-preview--254cfcc9-3e93-4797-90fc-9a8d735c5db3.lovable.app/og.png",
-      },
-      {
-        property: "og:image",
-        content: "https://id-preview--254cfcc9-3e93-4797-90fc-9a8d735c5db3.lovable.app/og.png",
-      },
     ],
   }),
   component: Storefront,
@@ -292,10 +284,7 @@ function Storefront() {
         >
           <div className="grid gap-6 lg:grid-cols-12">
             {/* Quick view */}
-            <div
-              id="your-bag"
-              className="scroll-mt-24 rounded-2xl bg-white/55 p-4 ring-1 ring-white/60 backdrop-blur-md lg:col-span-7"
-            >
+            <div className="scroll-mt-24 rounded-2xl bg-white/55 p-4 ring-1 ring-white/60 backdrop-blur-md lg:col-span-7">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="overflow-hidden rounded-lg bg-mist outline-1 -outline-offset-1 outline-black/5">
                   <img
@@ -377,7 +366,10 @@ function Storefront() {
             </div>
 
             {/* Cart */}
-            <div className="rounded-2xl bg-white/55 p-4 ring-1 ring-white/60 backdrop-blur-md lg:col-span-5">
+            <div
+              id="your-bag"
+              className="scroll-mt-24 rounded-2xl bg-white/55 p-4 ring-1 ring-white/60 backdrop-blur-md lg:col-span-5"
+            >
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-lg font-semibold">Your bag</h3>
                 <span className="text-xs font-medium text-ink/60">
