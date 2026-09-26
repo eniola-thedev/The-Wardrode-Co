@@ -352,6 +352,7 @@ function Storefront() {
               </article>
             ))}
           </div>
+          )}
         </section>
 
         {/* Quick view + cart */}
